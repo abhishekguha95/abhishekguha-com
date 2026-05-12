@@ -1,0 +1,50 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION } from '../consts';
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title="Abhishek Guha" description={SITE_DESCRIPTION} />
+	</head>
+
+<html lang="en">
+  <head>
+    <title>Abhishek Guha</title>
+    <meta
+      name="description"
+      content="Backend engineer focused on distributed systems, scalable architectures, and AI-integrated platforms."
+    />
+  </head>
+
+<body>
+		<Header />
+		<main>
+      <h1 class="text-5xl font-bold mb-6">
+				Abhishek Guha
+			</h1>
+
+			<nav class="space-y-3">
+				<a href="/blog" class="block underline">
+					Blog
+				</a>
+
+				<a href="/projects" class="block underline">
+					Projects
+				</a>
+
+				<a href="/resume" class="block underline">
+					Resume
+				</a>
+
+				<a href="/about" class="block underline">
+					About
+				</a>
+			</nav>
+		</main>
+		<Footer />
+	</body>
+</html>
