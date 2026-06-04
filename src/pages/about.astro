@@ -1,15 +1,34 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date()}
-	heroImage={AboutHeroImage}
->
-	<p>
-        I’m a backend engineer focused on building distributed systems that continue to behave predictably under real-world conditions — high traffic, partial failures, unreliable dependencies, uneven workloads, and constantly evolving product requirements.
-	</p>
-</Layout>
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead
+			title="About | Abhishek Guha"
+			description="About Abhishek Guha, a backend engineer focused on distributed systems, scalable architecture, and AI-integrated platforms."
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>About</h1>
+			<p>
+				I am a software engineer focused on distributed systems, scalability, and reliability.
+                </p>
+                <p>
+                Beyond engineering, I am interested in physics, endurance sports, learning, and the study of complex systems.
+                Whether it's a backend service handling millions of requests, a marathon training cycle, or a physical process 
+                governed by simple laws, I am drawn to understanding how systems evolve, respond to stress, and improve over time.
+                </p>
+                <p>
+                This site is where I share what I am building, learning, and occasionally getting wrong before learning 
+                something better.
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>
