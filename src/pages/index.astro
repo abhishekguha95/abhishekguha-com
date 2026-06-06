@@ -10,41 +10,148 @@ import { SITE_DESCRIPTION } from '../consts';
 	<head>
 		<BaseHead title="Abhishek Guha" description={SITE_DESCRIPTION} />
 	</head>
-
-<html lang="en">
-  <head>
-    <title>Abhishek Guha</title>
-    <meta
-      name="description"
-      content="Backend engineer focused on distributed systems, scalable architectures, and AI-integrated platforms."
-    />
-  </head>
-
-<body>
+	<body>
 		<Header />
 		<main>
-      <h1 class="text-5xl font-bold mb-6">
-				Abhishek Guha
-			</h1>
+			<section class="hero">
+				<h1>Abhishek Guha</h1>
+				<p class="intro">
+					I build scalable backend platforms, write about system design and AI
+					engineering, and spend my spare time learning physics and running long
+					distances.
+				</p>
+				<nav class="actions" aria-label="Primary">
+					<a href="/blog">Read Articles</a>
+					<a href="/projects">View Projects</a>
+					<a href="/resume">Resume</a>
+				</nav>
+			</section>
 
-			<nav class="space-y-3">
-				<a href="/blog" class="block underline">
-					Blog
-				</a>
+			<section>
+				<h2>Currently Exploring</h2>
+				<ul class="inline-list">
+					<li>AI engineering and RAG systems</li>
+					<li>Event-driven architectures</li>
+					<li>Distributed systems internals</li>
+					<li>Database replication and consensus</li>
+					<li>Endurance running</li>
+					<li>Physics for curious engineers</li>
+				</ul>
+			</section>
 
-				<a href="/projects" class="block underline">
-					Projects
-				</a>
+			<section>
+				<h2>Featured Writing</h2>
+				<article class="featured">
+					<h3>
+						<a href="/blog/building-backends-that-age-well/">
+							Building Backends That Age Well
+						</a>
+					</h3>
+					<p>
+						Designing systems that remain understandable, operable, and ready
+						to change after years of growth.
+					</p>
+				</article>
+			</section>
 
-				<a href="/resume" class="block underline">
-					Resume
-				</a>
-
-				<a href="/about" class="block underline">
-					About
-				</a>
-			</nav>
+			<section>
+				<h2>What I Think About</h2>
+				<div class="interest-grid">
+					<div>
+						<h3>Distributed Systems</h3>
+						<p>Reliability, scalability, messaging, consistency, and observability.</p>
+					</div>
+					<div>
+						<h3>AI Engineering</h3>
+						<p>RAG systems, evaluation, agent architectures, and production AI.</p>
+					</div>
+					<div>
+						<h3>Physics</h3>
+						<p>The principles that govern the world and the mental models they provide.</p>
+					</div>
+					<div>
+						<h3>Endurance</h3>
+						<p>Running, training cycles, discipline, and long-term adaptation.</p>
+					</div>
+				</div>
+			</section>
 		</main>
 		<Footer />
 	</body>
 </html>
+
+<style>
+	.hero {
+		margin-bottom: 3em;
+	}
+
+	section {
+		margin-bottom: 3em;
+	}
+
+	h2 {
+		font-size: 1.6em;
+	}
+
+	h3 {
+		font-size: 1.1em;
+	}
+
+	.positioning {
+		font-size: 1.45em;
+		line-height: 1.35;
+		color: rgb(var(--black));
+		margin-bottom: 0.75em;
+	}
+
+	.intro {
+		font-size: 1.1em;
+		line-height: 1.5;
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.75em;
+		margin-top: 1.5em;
+	}
+
+	.actions a {
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 6px;
+		color: rgb(var(--black));
+		padding: 0.45em 0.7em;
+		text-decoration: none;
+	}
+
+	.actions a:hover {
+		border-color: var(--accent);
+		color: var(--accent);
+	}
+
+	.inline-list {
+		padding-left: 1.2em;
+	}
+
+	.featured {
+		border-left: 4px solid var(--accent);
+		padding-left: 1em;
+	}
+
+	.featured p,
+	.interest-grid p {
+		margin-top: 0;
+	}
+
+	.interest-grid {
+		display: grid;
+		gap: 1em 1.5em;
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	@media (max-width: 720px) {
+		.interest-grid {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>
