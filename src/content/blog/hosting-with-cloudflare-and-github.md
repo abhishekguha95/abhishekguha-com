@@ -5,9 +5,9 @@ description: "How I bought a domain on Cloudflare, connected a GitHub repo to Cl
 pubDate: 2026-06-23
 tags:
 
-* Cloudflare
-* Domain
-* Static Sites
+- Cloudflare
+- Domain
+- Static Sites
 
 ---
 
