@@ -47,9 +47,9 @@ The site is static. There is no API to run, no database to host, and no backgrou
 
 Cloudflare lets one account handle three jobs that would otherwise involve multiple vendors:
 
-* **Registrar** for the domain.
-* **Pages** for build, deployment, and hosting.
-* **DNS**, which is automatically managed once the domain is on Cloudflare.
+- **Registrar** for the domain.
+- **Pages** for build, deployment, and hosting.
+- **DNS**, which is automatically managed once the domain is on Cloudflare.
 
 That consolidation is the real win. It is not the free tier, although that helps. It is having one dashboard where the domain, DNS records, builds, and deployments all live.
 
@@ -90,9 +90,9 @@ The setup is:
 
 For this site, which uses Astro, the configuration is:
 
-* **Framework preset**: Astro
-* **Build command**: `npm run build`
-* **Output directory**: `dist`
+- **Framework preset**: Astro
+- **Build command**: `npm run build`
+- **Output directory**: `dist`
 
 That is the entire build configuration.
 
@@ -112,8 +112,8 @@ Cloudflare handles the routing using a feature called **CNAME flattening**. Stan
 
 The two DNS records worth understanding are:
 
-* **The apex domain** (`example.com`) which points to the Pages project through Cloudflare's flattening mechanism.
-* **The `www` subdomain**, typically configured as a `CNAME` pointing to the same Pages deployment.
+- **The apex domain** (`example.com`) which points to the Pages project through Cloudflare's flattening mechanism.
+- **The `www` subdomain**, typically configured as a `CNAME` pointing to the same Pages deployment.
 
 Once both exist, redirecting `www` to the apex domain (or the other way around) is a simple redirect rule.
 
@@ -147,10 +147,10 @@ There is no server-side rendering, no request-time application execution, and no
 
 A few things I learned along the way:
 
-* **Branch selection is per environment.** If pushes are not triggering deployments, verify the correct production branch is configured.
-* **The output directory must match the framework.** Astro uses `dist`, Hugo uses `public`, and Next.js uses `.next`. If the framework configuration changes, update Pages accordingly.
-* **Preview URLs are public by default.** The URLs are difficult to guess but are not private. Teams should consider whether preview deployments expose anything sensitive.
-* **DNS propagation is mostly a non-event.** If domain changes appear to take an unusually long time, the first thing to verify is that the domain is actually using Cloudflare nameservers.
+- **Branch selection is per environment.** If pushes are not triggering deployments, verify the correct production branch is configured.
+- **The output directory must match the framework.** Astro uses `dist`, Hugo uses `public`, and Next.js uses `.next`. If the framework configuration changes, update Pages accordingly.
+- **Preview URLs are public by default.** The URLs are difficult to guess but are not private. Teams should consider whether preview deployments expose anything sensitive.
+- **DNS propagation is mostly a non-event.** If domain changes appear to take an unusually long time, the first thing to verify is that the domain is actually using Cloudflare nameservers.
 
 ### The Bill
 
