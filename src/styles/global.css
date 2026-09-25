@@ -3,6 +3,7 @@
   --paper: #e8ece3; --surface: #dfe5d8; --surface-raised: #f0f3eb;
   --ink: #242b27; --muted: #596259; --accent: #365e4d;
   --accent-soft: #d6dfce; --line: #cbd3c3; --diagram-line: #94a48f; --rust: #9b5132;
+  --sketch-background: #dfe5d8;
   --serif: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
   --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
   --page-width: 1120px;
@@ -12,6 +13,7 @@
   --paper: #171d19; --surface: #202922; --surface-raised: #1b231e;
   --ink: #e8e9df; --muted: #adb6a9; --accent: #b2d1b6;
   --accent-soft: #2b3a2f; --line: #39453b; --diagram-line: #718873; --rust: #e1a482;
+  --sketch-background: #252a28;
 }
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; scroll-padding-top: 2rem; }
