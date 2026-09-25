@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import ArticleArt from './ArticleArt.astro';
+import FormattedDate from './FormattedDate.astro';
+import { readingTime } from '../utils/readingTime';
+interface Props { post: CollectionEntry<'blog'>; headingTag?: 'h2' | 'h3'; }
+const { post, headingTag: Heading = 'h3' } = Astro.props;
+---
+<article class="post-card">
+  <a href={`/blog/${post.id}/`}>
+    <ArticleArt kind={post.data.tags.includes('Cloudflare') ? 'cloud' : 'systems'} />
+    <div class="post-content">
+      <div class="post-meta"><span>{post.data.tags[0] ?? 'Essay'}</span><span>{readingTime(post.body)} min read</span></div>
+      <Heading>{post.data.title}<span class="arrow" aria-hidden="true">↗</span></Heading>
+      <p>{post.data.description}</p>
+      <span class="date"><FormattedDate date={post.data.pubDate} /></span>
+    </div>
+  </a>
+</article>
+<style>
+  .post-card { min-width: 0; }
+  a { display: block; height: 100%; text-decoration: none; border: 1px solid var(--line); border-radius: 3px; overflow: hidden; transition: border-color 200ms; }
+  a:hover { border-color: var(--diagram-line); color: var(--ink); }
+  .post-content { padding: 24px 26px 26px; }
+  .post-meta { display: flex; justify-content: space-between; gap: 10px; color: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 14px; }
+  h2, h3 { font-family: var(--serif); font-size: clamp(1.5rem, 2.2vw, 1.85rem); line-height: 1.35; letter-spacing: -0.035em; position: relative; padding-right: 25px; }
+  .arrow { position: absolute; top: 3px; right: 0; font-family: var(--font-atkinson); font-size: 20px; transition: transform 180ms; color: var(--accent); }
+  a:hover .arrow { transform: translate(2px, -2px); }
+  p { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 13px 0 18px; }
+  .date { color: var(--muted); font-family: var(--mono); font-size: 10px; }
+  @media (max-width: 640px) { .post-content { padding: 20px; } }
+</style>

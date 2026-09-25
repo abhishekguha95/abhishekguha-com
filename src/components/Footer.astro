@@ -1,31 +1,27 @@
 ---
-const today = new Date();
+const year = new Date().getFullYear();
 ---
-
-<footer>
-	&copy; {today.getFullYear()} Abhishek Guha. All rights reserved.
-	<div class="social-links">
-		<!-- TODO: Add your social links -->
-	</div>
+<footer class="site-footer container">
+  <div class="footer-top">
+    <div><a class="footer-name" href="/">Abhishek Guha<span>.</span></a><p>Engineering, physics &amp; the long run.</p></div>
+    <nav aria-label="Footer navigation"><a href="/blog/">Writing</a><a href="/about/">About</a><a href="/resume/">Resume</a><a href="/rss.xml">RSS <span aria-hidden="true">↗</span></a></nav>
+  </div>
+  <div class="footer-bottom"><span>© {year} Abhishek Guha</span><span>A small corner of the internet.</span><a href="#main-content">Back to top <span aria-hidden="true">↑</span></a></div>
 </footer>
 <style>
-	footer {
-		padding: 2em 1em 6em 1em;
-		background: linear-gradient(var(--gray-gradient)) no-repeat;
-		color: rgb(var(--gray));
-		text-align: center;
-	}
-	.social-links {
-		display: flex;
-		justify-content: center;
-		gap: 1em;
-		margin-top: 1em;
-	}
-	.social-links a {
-		text-decoration: none;
-		color: rgb(var(--gray));
-	}
-	.social-links a:hover {
-		color: rgb(var(--gray-dark));
-	}
+  .site-footer { border-top: 1px solid var(--line); margin-top: 6rem; padding: 2.75rem 0 1.5rem; }
+  .footer-top, .footer-bottom { display: flex; justify-content: space-between; gap: 1.5rem; }
+  .footer-name { font-family: var(--serif); font-size: 26px; letter-spacing: -0.035em; text-decoration: none; }
+  .footer-name span { color: var(--rust); }
+  .footer-top p { color: var(--muted); font-size: 13px; margin: 0.45rem 0 0; }
+  nav { display: flex; gap: 25px; align-items: flex-start; padding-top: 8px; }
+  nav a { font-size: 13px; text-decoration: none; }
+  .footer-bottom { border-top: 1px solid var(--line); margin-top: 2.75rem; padding-top: 1.25rem; font-family: var(--mono); font-size: 10px; color: var(--muted); }
+  .footer-bottom a { text-decoration: none; }
+  @media (max-width: 640px) {
+    .site-footer { margin-top: 4rem; padding-top: 2rem; }
+    .footer-top { flex-direction: column; gap: 1.5rem; }
+    .footer-bottom { flex-wrap: wrap; gap: 0.75rem; }
+    .footer-bottom > span:nth-child(2) { display: none; }
+  }
 </style>

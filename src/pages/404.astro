@@ -1,20 +1,12 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import SiteLayout from '../layouts/SiteLayout.astro';
 ---
-
-<html lang="en">
-	<head>
-		<BaseHead title="Page Not Found" description="Page not found" />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>404 - Page Not Found</h1>
-			<p>The page you're looking for doesn't exist.</p>
-			<a href="/">Go home</a>
-		</main>
-		<Footer />
-	</body>
-</html>
+<SiteLayout title="Page not found | Abhishek Guha" description="This page could not be found. Find your way back to Abhishek Guha's website.">
+  <section class="not-found"><p class="eyebrow">404 / Off the map</p><h1>A small <em>detour.</em></h1><p>This page doesn't seem to exist. Let's get you back to familiar ground.</p><a class="button" href="/">Back to home <span aria-hidden="true">→</span></a></section>
+</SiteLayout>
+<style>
+  .not-found { padding-block: 100px; max-width: 700px; }
+  h1 em { color: var(--accent); }
+  .not-found > p:not(.eyebrow) { color: var(--muted); margin-block: 25px 30px; max-width: 440px; }
+  @media (max-width: 640px) { .not-found { padding-block: 65px; } }
+</style>

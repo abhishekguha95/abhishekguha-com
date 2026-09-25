@@ -21,7 +21,15 @@ const { title, description, image } = Astro.props;
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" href="/favicon.ico" />
+<meta name="theme-color" content="#e8ece3" />
+<script is:inline>
+  try {
+    const saved = localStorage.getItem('theme');
+    const dark = saved === 'dark' || (saved !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#171d19' : '#e8ece3');
+  } catch { document.documentElement.dataset.theme = 'light'; }
+</script>
 <link rel="sitemap" href="/sitemap-index.xml" />
 <link
 	rel="alternate"

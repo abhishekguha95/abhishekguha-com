@@ -1,157 +1,114 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION } from '../consts';
+import { getCollection } from 'astro:content';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SystemsSketch from '../components/SystemsSketch.astro';
+import PostCard from '../components/PostCard.astro';
+const posts = (await getCollection('blog')).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 2);
+const interests = [
+  { number: '01', title: 'Distributed systems', text: 'Reliability, consistency, and the decisions that help a system grow.', symbol: 'nodes' },
+  { number: '02', title: 'AI engineering', text: 'Retrieval, evaluation, and making intelligent systems useful.', symbol: 'spark' },
+  { number: '03', title: 'Physics & endurance', text: 'First principles, long distances, and learning how things adapt.', symbol: 'orbit' },
+];
 ---
+<SiteLayout title="Abhishek Guha — Engineering & ideas">
+  <section class="hero" aria-labelledby="intro-heading">
+    <div class="hero-copy">
+      <p class="eyebrow"><span class="small-dot" aria-hidden="true"></span> Engineer. Writer. Always curious.</p>
+      <h1 id="intro-heading">Building systems.<br /><em>Connecting ideas.</em></h1>
+      <p class="intro">I'm Abhishek, a backend engineer drawn to how things work — from distributed systems and practical AI to physics and the long run.</p>
+      <div class="hero-actions"><a class="button" href="/blog/">Explore my writing <span aria-hidden="true">↗</span></a><a class="text-link" href="/about/">A little about me <span aria-hidden="true">→</span></a></div>
+    </div>
+    <div class="hero-art"><SystemsSketch /></div>
+  </section>
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title="Abhishek Guha" description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section class="hero">
-				<h1>Abhishek Guha</h1>
-				<p class="intro">
-					I build scalable backend platforms, write about system design and AI
-					engineering, and spend my spare time learning physics and running long
-					distances.
-				</p>
-				<nav class="actions" aria-label="Primary">
-					<a href="/blog">Read Articles</a>
-					<a href="/projects">View Projects</a>
-					<a href="/resume">Resume</a>
-				</nav>
-			</section>
+  <div class="intro-note"><span class="meta-label">A personal field guide</span><p>Notes on building well, thinking clearly, and staying curious.</p><span aria-hidden="true">↓</span></div>
 
-			<section>
-				<h2>Currently Exploring</h2>
-				<ul class="inline-list">
-					<li>AI engineering and RAG systems</li>
-					<li>Event-driven architectures</li>
-					<li>Distributed systems internals</li>
-					<li>Database replication and consensus</li>
-					<li>Endurance running</li>
-					<li>Physics for curious engineers</li>
-				</ul>
-			</section>
+  <section class="writing-section" aria-labelledby="writing-heading">
+    <div class="section-heading"><div><p class="eyebrow">01 / From the notebook</p><h2 id="writing-heading">Ideas, put into words.</h2></div><a class="text-link" href="/blog/">All writing <span aria-hidden="true">↗</span></a></div>
+    <div class="posts-grid">{posts.map((post) => <PostCard post={post} />)}</div>
+  </section>
 
-			<section>
-				<h2>Featured Writing</h2>
-				<article class="featured">
-					<h3>
-						<a href="/blog/building-backends-that-age-well/">
-							Building Backends That Age Well
-						</a>
-					</h3>
-					<p>
-						Designing systems that remain understandable, operable, and ready
-						to change after years of growth.
-					</p>
-				</article>
-			</section>
+  <section class="interests-section" aria-labelledby="interests-heading">
+    <div class="section-heading"><div><p class="eyebrow">02 / Threads I follow</p><h2 id="interests-heading">Different questions.<br /><em>The same curiosity.</em></h2></div><p class="section-aside">A few things I keep coming back to.</p></div>
+    <div class="interests-grid">
+      {interests.map((interest) => <article class="interest">
+        <div class="interest-top"><span class="meta-label">{interest.number}</span>
+          <svg width="34" height="34" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.2" aria-hidden="true">
+            {interest.symbol === 'nodes' ? <><path d="M10 10h16M10 10v16m0 0h16m0 0V10M10 10l16 16"/><circle cx="10" cy="10" r="3" fill="var(--paper)"/><circle cx="26" cy="10" r="3" fill="var(--paper)"/><circle cx="10" cy="26" r="3" fill="var(--paper)"/><circle cx="26" cy="26" r="3" fill="var(--paper)"/></> : interest.symbol === 'spark' ? <><path d="M18 3v30M3 18h30M7 7l22 22M7 29 29 7"/><circle cx="18" cy="18" r="7" fill="var(--paper)"/></> : <><ellipse cx="18" cy="18" rx="16" ry="7" transform="rotate(-35 18 18)"/><circle cx="18" cy="18" r="11"/><circle cx="18" cy="18" r="2" fill="currentColor"/></>}
+          </svg>
+        </div>
+        <h3>{interest.title}</h3><p>{interest.text}</p>
+      </article>)}
+    </div>
+  </section>
 
-			<section>
-				<h2>What I Think About</h2>
-				<div class="interest-grid">
-					<div>
-						<h3>Distributed Systems</h3>
-						<p>Reliability, scalability, messaging, consistency, and observability.</p>
-					</div>
-					<div>
-						<h3>AI Engineering</h3>
-						<p>RAG systems, evaluation, agent architectures, and production AI.</p>
-					</div>
-					<div>
-						<h3>Physics</h3>
-						<p>The principles that govern the world and the mental models they provide.</p>
-					</div>
-					<div>
-						<h3>Endurance</h3>
-						<p>Running, training cycles, discipline, and long-term adaptation.</p>
-					</div>
-				</div>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
-
+  <aside class="personal-note">
+    <span class="note-mark" aria-hidden="true">✳</span>
+    <div><p class="eyebrow">Beyond the keyboard</p><h2>There's a world outside the terminal.</h2><p>Running long distances. Getting lost in a physics question. Following an idea just to see where it leads.</p></div>
+    <a class="text-link" href="/about/">More about me <span aria-hidden="true">↗</span></a>
+  </aside>
+</SiteLayout>
 <style>
-	.hero {
-		margin-bottom: 3em;
-	}
-
-	section {
-		margin-bottom: 3em;
-	}
-
-	h2 {
-		font-size: 1.6em;
-	}
-
-	h3 {
-		font-size: 1.1em;
-	}
-
-	.positioning {
-		font-size: 1.45em;
-		line-height: 1.35;
-		color: rgb(var(--black));
-		margin-bottom: 0.75em;
-	}
-
-	.intro {
-		font-size: 1.1em;
-		line-height: 1.5;
-	}
-
-	.actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75em;
-		margin-top: 1.5em;
-	}
-
-	.actions a {
-		border: 1px solid rgb(var(--gray-light));
-		border-radius: 6px;
-		color: rgb(var(--black));
-		padding: 0.45em 0.7em;
-		text-decoration: none;
-	}
-
-	.actions a:hover {
-		border-color: var(--accent);
-		color: var(--accent);
-	}
-
-	.inline-list {
-		padding-left: 1.2em;
-	}
-
-	.featured {
-		border-left: 4px solid var(--accent);
-		padding-left: 1em;
-	}
-
-	.featured p,
-	.interest-grid p {
-		margin-top: 0;
-	}
-
-	.interest-grid {
-		display: grid;
-		gap: 1em 1.5em;
-		grid-template-columns: repeat(2, minmax(0, 1fr));
-	}
-
-	@media (max-width: 720px) {
-		.interest-grid {
-			grid-template-columns: 1fr;
-		}
-	}
+  .hero { display: grid; grid-template-columns: 1.32fr 1fr; align-items: center; gap: 55px; padding-block: 76px 66px; }
+  .hero .eyebrow { display: flex; align-items: center; gap: 10px; font-size: 10px; margin-bottom: 26px; }
+  .small-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+  h1 { font-size: clamp(3rem, 5.1vw, 4.65rem); line-height: 1.1; letter-spacing: -0.06em; }
+  h1 em { color: var(--accent); font-weight: 400; }
+  .intro { max-width: 490px; color: var(--muted); font-size: 17px; line-height: 1.8; margin: 25px 0 30px; }
+  .hero-actions { display: flex; align-items: center; gap: 27px; flex-wrap: wrap; }
+  .hero-art { transform: rotate(2deg); }
+  .intro-note { display: flex; gap: 30px; align-items: center; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding-block: 20px; }
+  .intro-note .meta-label { color: var(--accent); font-size: 10px; white-space: nowrap; }
+  .intro-note p { margin: 0; font-size: 14px; color: var(--muted); }
+  .intro-note > span:last-child { margin-left: auto; color: var(--accent); }
+  .writing-section { padding-top: 65px; }
+  .posts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; }
+  .interests-section { margin-top: 76px; padding-top: 58px; border-top: 1px solid var(--line); }
+  .interests-section h2 { font-size: 39px; }
+  .interests-section h2 em { color: var(--accent); }
+  .section-aside { max-width: 190px; font-size: 14px; color: var(--muted); margin: 0; }
+  .interests-grid { display: grid; grid-template-columns: repeat(3, 1fr); margin-top: 36px; }
+  .interest { padding: 0 28px; border-left: 1px solid var(--line); }
+  .interest:first-child { border: 0; padding-left: 0; }
+  .interest:last-child { padding-right: 0; }
+  .interest-top { display: flex; align-items: center; justify-content: space-between; color: var(--accent); margin-bottom: 20px; }
+  .interest h3 { font-size: 19px; margin-bottom: 10px; }
+  .interest p { font-size: 15px; color: var(--muted); margin: 0; }
+  .personal-note { margin-top: 75px; padding: 32px; background: var(--surface); display: flex; gap: 27px; align-items: center; border-radius: 3px; }
+  .note-mark { font-family: var(--serif); font-size: 48px; color: var(--rust); line-height: 1; }
+  .personal-note .eyebrow { margin-bottom: 8px; font-size: 9px; }
+  .personal-note h2 { font-size: 27px; }
+  .personal-note p:last-child { margin: 10px 0 0; max-width: 590px; font-size: 14px; color: var(--muted); }
+  .personal-note .text-link { margin-left: auto; flex-shrink: 0; }
+  @media (max-width: 1000px) { .hero { gap: 28px; } .hero-actions { gap: 16px; } .hero-actions .text-link { font-size: 13px; } }
+  @media (max-width: 760px) {
+    .hero { padding-block: 45px 38px; gap: 32px; grid-template-columns: 1fr; }
+    h1 { font-size: clamp(2.65rem, 9.2vw, 4.5rem); }
+    .hero .eyebrow { font-size: 9px; margin-bottom: 22px; }
+    .intro { max-width: 540px; font-size: 16px; margin-block: 20px 25px; }
+    .hero-art { max-width: 430px; width: 100%; margin-inline: auto; transform: none; }
+    .intro-note { gap: 8px; align-items: flex-start; flex-direction: column; }
+    .intro-note > span:last-child { display: none; }
+    .intro-note p { font-size: 13px; }
+    .writing-section { padding-top: 42px; }
+    .posts-grid { gap: 22px; }
+    .interests-section { margin-top: 48px; padding-top: 38px; }
+    .interests-section h2 { font-size: 32px; }
+    .interest { padding-inline: 18px; }
+    .personal-note { margin-top: 45px; flex-wrap: wrap; padding: 25px; gap: 15px; }
+    .personal-note > div { flex: 1; min-width: 200px; }
+    .personal-note .text-link { margin-left: 0; }
+  }
+  @media (max-width: 540px) {
+    .hero-art :global(.systems-sketch) { padding: 16px; }
+    .hero-art :global(.systems-sketch svg) { height: 190px; }
+    .posts-grid, .interests-grid { grid-template-columns: 1fr; }
+    .interest, .interest:first-child, .interest:last-child { border: 0; border-top: 1px solid var(--line); padding: 24px 0; }
+    .interest-top { margin-bottom: 10px; }
+    .section-aside { display: none; }
+    .section-heading h2 { font-size: 29px; }
+    .section-heading { gap: 12px; }
+    .personal-note h2 { font-size: 25px; }
+    .note-mark { display: none; }
+  }
 </style>

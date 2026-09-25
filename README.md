@@ -1,63 +1,43 @@
-# Astro Starter Kit: Blog
+# abhishekguha.com
+
+Abhishek Guha's personal website, built with Astro. An editorial home for writing about backend engineering, distributed systems, AI, physics, and endurance.
+
+## Development
+
+Requires Node.js 22.12 or newer.
 
 ```sh
-npm create astro@latest -- --template blog
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Astro serves the development site at http://localhost:4321 by default.
 
-Features:
-
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
+```sh
+npm run build
+npm run preview
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Production output is generated in `dist/`. Cloudflare Pages uses `npm run build` and the `dist` output directory.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Structure
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+- `src/pages/` — homepage, writing, projects, resume, About, and 404 routes.
+- `src/content/blog/` — Markdown articles with validated title, description, date, and tags.
+- `src/layouts/SiteLayout.astro` — shared document shell and navigation.
+- `src/layouts/BlogLayout.astro` — article typography, metadata, and contents navigation.
+- `src/components/` — reusable cards, navigation, footer, and original SVG illustrations.
+- `src/styles/global.css` — light/dark design tokens and shared styles.
+- `src/utils/readingTime.ts` — reading-time estimate excluding comments and fenced code.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Design and content
 
-## 🧞 Commands
+The design uses muted sage-gray surfaces, green accents, local fonts, serif headlines, and original SVG artwork. Theme preference persists locally. Mobile navigation works without JavaScript; theme switching and responsive contents defaults are small progressive enhancements.
 
-All commands are run from the root of the project, from a terminal:
+Existing article URLs are retained. Projects and Resume have intentional empty states until verified content is available.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+See [AGENTS.md](AGENTS.md) for repository conventions and validation guidance, and [the content roadmap](docs/content-roadmap.md) for planned articles, case studies, and experience content.
 
-## 👀 Want to learn more?
+## Validation
 
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+Run a production build and review key pages on desktop and mobile. Check navigation, theme persistence, contents anchors, keyboard access, and horizontal overflow. There is no configured automated test suite.

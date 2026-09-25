@@ -1,0 +1,45 @@
+---
+// A projected torus: a small set of rules creates an interconnected whole.
+function point(u: number, v: number) {
+  const x = (108 + 39 * Math.cos(v)) * Math.cos(u);
+  const y = (108 + 39 * Math.cos(v)) * Math.sin(u);
+  const z = 39 * Math.sin(v);
+  const tiltY = y * Math.cos(0.92) - z * Math.sin(0.92);
+  return [220 + x * Math.cos(-0.35) - tiltY * Math.sin(-0.35), 204 + x * Math.sin(-0.35) + tiltY * Math.cos(-0.35)];
+}
+function curve(fixed: number, around: boolean) {
+  return Array.from({ length: 97 }, (_, i) => {
+    const angle = (i / 96) * Math.PI * 2;
+    const [x, y] = point(around ? angle : fixed, around ? fixed : angle);
+    return `${i ? 'L' : 'M'}${x.toFixed(2)},${y.toFixed(2)}`;
+  }).join(' ') + ' Z';
+}
+---
+<figure class="systems-sketch">
+  <div class="drawing-meta"><span>Studies in connection</span><span>Fig. 01</span></div>
+  <svg viewBox="0 0 440 400" fill="none" aria-hidden="true">
+    <g stroke="var(--line)" stroke-width="1">
+      <path d="M25 204H415M220 28V380" stroke-dasharray="2 7"/>
+      <circle cx="220" cy="204" r="170" stroke-dasharray="2 7"/>
+      <path d="M20 45V25H40M400 25H420V45M20 355V375H40M400 375H420V355"/>
+    </g>
+    <g class="form" stroke-width="0.8">
+      {Array.from({ length: 28 }, (_, i) => <path d={curve(i * Math.PI * 2 / 28, false)} stroke="var(--diagram-line)" />)}
+      {Array.from({ length: 16 }, (_, i) => <path d={curve(i * Math.PI * 2 / 16, true)} stroke="var(--accent)" opacity="0.7" />)}
+    </g>
+    <path d="M332 125 366 92H404M97 287 67 319H32" stroke="var(--diagram-line)"/>
+    <circle cx="332" cy="125" r="4" fill="var(--rust)" stroke="var(--paper)" stroke-width="3"/>
+    <circle cx="97" cy="287" r="3" fill="var(--accent)"/>
+    <text x="367" y="82" fill="var(--muted)" font-size="9" font-family="var(--mono)">STRUCTURE</text>
+    <text x="31" y="338" fill="var(--muted)" font-size="9" font-family="var(--mono)">EMERGENCE</text>
+    <circle cx="220" cy="204" r="3" fill="var(--rust)"/>
+  </svg>
+  <figcaption>Small parts. <em>Interesting connections.</em></figcaption>
+</figure>
+<style>
+  .systems-sketch { margin: 0; padding: 22px 22px 18px; position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; }
+  .drawing-meta { display: flex; justify-content: space-between; gap: 10px; font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+  svg { display: block; width: 100%; margin-block: -7px -10px; }
+  figcaption { border-top: 1px solid var(--line); padding-top: 14px; font-size: 12px; color: var(--muted); }
+  figcaption em { margin-left: 4px; font-size: 15px; color: var(--accent); }
+</style>

@@ -1,0 +1,45 @@
+---
+interface Props { kind?: 'systems' | 'cloud'; }
+const { kind = 'systems' } = Astro.props;
+---
+<div class:list={['article-art', kind]} aria-hidden="true">
+  <span class="art-label">{kind === 'cloud' ? 'From source to the edge' : 'Designed for change'}</span>
+  <svg viewBox="0 0 520 220" fill="none">
+    {kind === 'cloud' ? <>
+      <g stroke="var(--diagram-line)" stroke-width="1">
+        <path d="M260 24v176M104 110h312" stroke-dasharray="3 6" />
+        <path d="m260 64 117 51-117 51-117-51Z" fill="var(--surface)" />
+        <path d="m143 115v18l117 51 117-51v-18M260 166v18" />
+        <path d="m260 29 117 51-117 51-117-51Z" fill="var(--accent-soft)" />
+        <path d="m143 80v18l117 51 117-51V80M260 131v18" />
+        <path d="m260 51 64 28-64 28-64-28Z" stroke="var(--accent)" />
+        <path d="M159 88 109 65H71M361 128l50 22h40" />
+      </g>
+      <circle cx="260" cy="79" r="5" fill="var(--rust)" />
+      <circle cx="71" cy="65" r="3" fill="var(--accent)" /><circle cx="451" cy="150" r="3" fill="var(--accent)" />
+    </> : <>
+      <g stroke="var(--diagram-line)" stroke-width="1">
+        <path d="M75 110H445M260 26V204" stroke-dasharray="3 6"/>
+        <path d="M173 75h64M283 75h64M173 151h64M283 151h64M130 95v36M260 95v36M390 95v36" />
+        <rect x="92" y="54" width="76" height="42" rx="3" fill="var(--surface)" />
+        <rect x="222" y="54" width="76" height="42" rx="3" fill="var(--accent-soft)" stroke="var(--accent)" />
+        <rect x="352" y="54" width="76" height="42" rx="3" fill="var(--surface)" />
+        <rect x="92" y="131" width="76" height="42" rx="3" fill="var(--surface)" />
+        <rect x="222" y="131" width="76" height="42" rx="3" fill="var(--surface)" />
+        <rect x="352" y="131" width="76" height="42" rx="3" fill="var(--surface)" />
+      </g>
+      <g fill="var(--accent)"><circle cx="130" cy="75" r="3"/><circle cx="390" cy="75" r="3"/><circle cx="130" cy="152" r="3"/><circle cx="260" cy="152" r="3"/><circle cx="390" cy="152" r="3"/></g>
+      <circle cx="260" cy="75" r="5" fill="var(--rust)" />
+    </>}
+  </svg>
+  <span class="art-number">{kind === 'cloud' ? '02 / INFRASTRUCTURE' : '01 / SYSTEMS'}</span>
+</div>
+<style>
+  .article-art { background: var(--surface); position: relative; padding: 12px 22px 14px; overflow: hidden; }
+  .cloud { background: var(--accent-soft); }
+  svg { display: block; width: 100%; height: 190px; transition: transform 400ms ease; }
+  .art-label, .art-number { position: relative; z-index: 1; font-family: var(--mono); font-size: 9px; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); }
+  .art-number { display: block; text-align: right; }
+  :global(a:hover) svg { transform: translateY(-3px); }
+  @media (max-width: 640px) { svg { height: 160px; } }
+</style>

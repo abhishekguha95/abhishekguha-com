@@ -1,20 +1,19 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_DESCRIPTION } from '../consts';
+import SiteLayout from '../layouts/SiteLayout.astro';
+import SystemsSketch from '../components/SystemsSketch.astro';
 ---
-
-<html lang="en">
-	<head>
-		<BaseHead title="Projects" description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>Projects</h1>
-			<p>Coming soon...</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<SiteLayout title="Projects | Abhishek Guha">
+  <header class="page-intro"><p class="eyebrow">Experiments &amp; explorations</p><h1>The workbench<span>.</span></h1><p class="lead">A place for the systems I build and the decisions behind them.</p></header>
+  <section class="workbench">
+    <div class="sketch"><SystemsSketch /></div>
+    <div class="workbench-copy"><p class="eyebrow">More to come</p><h2>Good work deserves<br /><em>a proper write-up.</em></h2><p>Project case studies haven't been published yet. In the meantime, my writing is a window into how I think about building software.</p><a class="button" href="/blog/">Explore the notebook <span aria-hidden="true">↗</span></a></div>
+  </section>
+</SiteLayout>
+<style>
+  h1 span, h2 em { color: var(--accent); }
+  .workbench { display: grid; grid-template-columns: 0.8fr 1fr; gap: 70px; align-items: center; border-top: 1px solid var(--line); padding-top: 40px; }
+  .sketch { max-width: 390px; }
+  h2 { font-size: 38px; }
+  .workbench-copy > p:not(.eyebrow) { color: var(--muted); max-width: 460px; margin-block: 22px 28px; }
+  @media (max-width: 760px) { .workbench { grid-template-columns: 1fr; gap: 35px; } .sketch { max-width: 300px; margin-inline: auto; width: 100%; } h2 { font-size: 32px; } }
+</style>
